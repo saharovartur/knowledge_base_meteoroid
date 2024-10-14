@@ -1,3 +1,8 @@
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -8,10 +13,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r@3h-em@*i$=3-@nn)=qp!+903!-e!0_#j(%5e22a*g6z2@juw'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.getenv('DEBUG'))
 
 ALLOWED_HOSTS = []
 
@@ -81,12 +86,12 @@ WSGI_APPLICATION = 'base_know.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'knowledge_base',
-        'USER': 'admin_knowledge',
-        'PASSWORD': 'Ke=6jv8pgm\Bw7i',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'ENGINE': str(os.getenv('ENGINE')),
+        'NAME': str(os.getenv('DB_NAME')),
+        'USER': str(os.getenv('DB_USER')),
+        'PASSWORD': str(os.getenv('DB_PASSWORD')),
+        'HOST': str(os.getenv('DB_HOST')),
+        'PORT': os.getenv('DB_POST'),
     }
 }
 
@@ -115,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Europe/Samara'
+TIME_ZONE = str(os.getenv('TIME_ZONE'))
 
 USE_I18N = True
 
@@ -125,10 +130,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = str(os.getenv('STATIC_URL'))
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = str(os.getenv('MEDIA_URL'))
+MEDIA_ROOT = str(os.getenv('MEDIA_ROOT'))
 
 
 # Default primary key field type
@@ -142,7 +147,7 @@ AUTHENTICATION_BACKENDS = (
     'guardian.backends.ObjectPermissionBackend',
 )
 
-LOGIN_REDIRECT_URL = 'post_list'
-LOGOUT_REDIRECT_URL = 'login'
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = str(os.getenv('LOGIN_REDIRECT_URL'))
+LOGOUT_REDIRECT_URL = str(os.getenv('LOGOUT_REDIRECT_URL'))
+LOGIN_URL = str(os.getenv('LOGIN_URL'))
+LOGOUT_URL = str(os.getenv('LOGOUT_URL'))

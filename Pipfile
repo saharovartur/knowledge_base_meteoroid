@@ -10,6 +10,7 @@ django-guardian = "*"
 signals = "*"
 pillow = "*"
 django-debug-toolbar = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
