@@ -15,5 +15,12 @@ class AccountsLogoutView(LogoutView):
 
 @login_required
 def profile(request):
-    profile_data = Profile.objects.all()
+    current_user = request.user.profile
+    profile_data = (Profile.objects.select_related('user', 'company',
+                                                   'position',
+                                                   'department', 'supervisor').filter(user__profile=current_user))
     return render(request, 'profile.html', {'profile_data': profile_data})
+
+
+def register(request):
+    pass
