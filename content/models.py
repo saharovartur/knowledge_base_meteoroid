@@ -55,8 +55,6 @@ class Post(models.Model):
     def __str__(self):
         return f'Пост {self.title} компании {self.company}'
 
-
-
     def save(self):
         super().save()
 
