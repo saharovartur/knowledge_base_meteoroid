@@ -11,15 +11,15 @@ from django.shortcuts import render
 def user_posts(request):
     current_user = request.user.profile
     current_company = current_user.company
-    posts = Post.objects.select_related('user', 'company').filter(
+    posts = Post.objects.filter(
         status='published',
-        company=current_company)
+        company=current_company).select_related('user', 'company', 'category')
     return render(request, 'post_list.html', {'posts': posts})
 
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
-    template_name = 'post_detail.html '
+    template_name = 'post_detail.html'
 
 
 def about(request):
