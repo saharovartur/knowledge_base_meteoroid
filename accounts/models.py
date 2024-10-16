@@ -20,7 +20,7 @@ class Profile(models.Model):
     skills = models.TextField(verbose_name='Навыки', blank=True)
     phone_number = models.CharField(verbose_name='Номер телефона', max_length=11)
     date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
-    date_of_employment = models.DateField(verbose_name='Дата трудоустройства')
+    date_of_employment = models.DateField(verbose_name='Дата трудоустройства', null=True, blank=True)
     date_of_dismissal = models.DateField(blank=True, null=True, verbose_name='Дата увольнения')
     fired = models.BooleanField(verbose_name='Уволен', null=True)
     notes = models.TextField(verbose_name='Примечания', blank=True)
@@ -32,16 +32,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'Контактное лицо: {self.user.username} | Должность: {self.position}'
-
-    def save(self):
-        super().save()
-
-        img = Image.open(self.photo.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.photo.path)
 
 
 class Position(models.Model):
