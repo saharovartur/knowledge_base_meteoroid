@@ -133,7 +133,7 @@ USE_TZ = True
 STATIC_URL = str(os.getenv('STATIC_URL'))
 
 MEDIA_URL = str(os.getenv('MEDIA_URL'))
-MEDIA_ROOT = str(os.getenv('MEDIA_ROOT'))
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type
