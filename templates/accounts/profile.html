@@ -2,7 +2,9 @@
 {% block content %}
     <div class="content-section">
       <div class="media">
+        {% if user.profile.photo %}
         <img class="rounded-circle account-img" src="{{ user.profile.photo.url }}">
+        {% endif %}
 
         <div class="media-body">
              <i class='bx bxs-briefcase'></i>{{ user.profile.company }}</a>
@@ -34,7 +36,7 @@
         <div>
           <h3>Панель администратора</h3>
           <a class="btn btn-dark" href="#" role="button">Добавить статью</a>
-          <a class="btn btn-primary" href="#" role="button">Добавить сотрудника</a>
+          <a class="btn btn-primary" href="{% url 'register' %}" role="button">Добавить сотрудника</a>
           <a class="btn btn-primary" href="#" role="button">Добавить новость</a>
       </div>
       {% endif %}
