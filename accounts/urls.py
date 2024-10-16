@@ -6,7 +6,9 @@ from accounts.views import AccountsLoginView
 urlpatterns = [
     path('login/', AccountsLoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('', include('django.contrib.auth.urls')),
+    path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
+
 
 
 ]
