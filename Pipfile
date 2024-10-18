@@ -11,6 +11,7 @@ signals = "*"
 pillow = "*"
 django-debug-toolbar = "*"
 python-dotenv = "*"
+redis = "*"
 
 [dev-packages]
 
