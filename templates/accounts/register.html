@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="content-section">
-    <div class="media">
-        <h1>Создать профиль</h1>
-    </div>
+    <div class="content-section">
+        <div class="media">
+            <h1>Создать профиль сотрудника</h1>
+            <span class="badge bg-danger">Запомните логин и пароль</span>
+        </div>
 
-    <div>
-        <form method="post">
-            {{ user_form.as_p }}
-            {% csrf_token %}
-            <p>
-                <input type="submit" value="Создать профиль">
-            </p>
-        </form>
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                <p>
+                    <button class="btn btn-outline-info" type="submit">Создать профиль</button>
+                </p>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock content %}
+
