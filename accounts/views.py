@@ -23,8 +23,6 @@ def profile(request):
     return render(request, 'profile.html', {'profile_data': profile_data})
 
 
-
-
 @login_required
 def register(request):
     """Вью регистрации"""
