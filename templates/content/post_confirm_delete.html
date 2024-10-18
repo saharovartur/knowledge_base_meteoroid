@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="media content-section">
+<form method="post">{% csrf_token %}
+    <p>Вы уверены, что хотите удалить  "{{ object }}"?</p>
+    {{ form }}
+    <button class="btn btn-danger btn-sm mt-1 mb-1" type="submit">Удалить</button>
+</form>
+{% endblock %}
