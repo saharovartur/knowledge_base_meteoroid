@@ -151,3 +151,8 @@ LOGIN_REDIRECT_URL = str(os.getenv('LOGIN_REDIRECT_URL'))
 LOGOUT_REDIRECT_URL = str(os.getenv('LOGOUT_REDIRECT_URL'))
 LOGIN_URL = str(os.getenv('LOGIN_URL'))
 LOGOUT_URL = str(os.getenv('LOGOUT_URL'))
+
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
