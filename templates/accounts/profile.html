@@ -1,45 +1,50 @@
 {% extends "base.html" %}
+
 {% block content %}
     <div class="content-section">
-      <div class="media">
-        {% if user.profile.photo %}
-        <img class="rounded-circle account-img" src="{{ user.profile.photo.url }}">
-        {% endif %}
+        <div class="media">
+            {% if user.profile.photo %}
+                <img class="rounded-circle account-img" src="{{ user.profile.photo.url }}">
+            {% endif %}
 
-        <div class="media-body">
-             <i class='bx bxs-briefcase'></i>{{ user.profile.company }}</a>
-            <span class="badge rounded-pill bg-info text-dark">Личный кабинет</span>
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">Сотрудник: {{ user.first_name}} {{ user.last_name}}</p>
-          <p class="text-secondary">E-mail: {{ user.email }}</p>
-         <p class="text-secondary">День рождения: {{ user.profile.date_of_birth }}</p>
-         <p class="text-secondary">Компания: {{ user.profile.company }}</p>
-         <p class="text-secondary">Руководитель: {{ user.profile.supervisor }}</p>
-         <p class="text-secondary">Отдел: {{ user.profile.department }}</p>
-         <p class="text-secondary">Образование: {{ user.profile.education }}</p>
-         <p class="text-secondary">Номер телефона: {{ user.profile.phone_number  }}</p>
-         <p class="text-secondary">Работает с: {{ user.profile.date_of_employment  }}</p>
+            <div class="media-body">
+                <i class='bx bxs-briefcase'></i><span class="company">{{ user.profile.company }}</span>
+                <span class="badge rounded-pill bg-info text-dark">Личный кабинет</span>
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">Сотрудник: {{ user.first_name }} {{ user.last_name }}</p>
+                <p class="text-secondary">E-mail: {{ user.email }}</p>
+                <p class="text-secondary">День рождения: {{ user.profile.date_of_birth }}</p>
+                <p class="text-secondary">Компания: {{ user.profile.company }}</p>
+                <p class="text-secondary">Руководитель: {{ user.profile.supervisor }}</p>
+                <p class="text-secondary">Отдел: {{ user.profile.department }}</p>
+                <p class="text-secondary">Образование: {{ user.profile.education }}</p>
+                <p class="text-secondary">Номер телефона: {{ user.profile.phone_number }}</p>
+                <p class="text-secondary">Работает с: {{ user.profile.date_of_employment }}</p>
+            </div>
+
+            <form method="post" action="{% url "logout" %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-black" onclick="return confirm('Вы уверены, что хотите выйти?');">
+                    <i class='bx bxs-exit bx-tada-hover'></i> Выйти
+                </button>
+            </form>
         </div>
-          <form method="post" action="{% url "logout" %}">
-              {% csrf_token %}
-              <button type="submit" class="btn btn-black" onclick="return confirm('Вы уверены, что хотите выйти?');">
-                 <i class='bx bxs-exit bx-tada-hover'></i> Выйти
-              </button>
-          </form>
-      </div>
-        <!-- Здесь будет форма -->
     </div>
 
     <div class="content-section">
-      <div class="media">
-     {% if user.profile.moderator%}
-        <div>
-          <h3>Панель администратора</h3>
-          <a class="btn btn-dark" href="#" role="button">Добавить статью</a>
-          <a class="btn btn-primary" href="{% url 'register' %}" role="button">Добавить сотрудника</a>
-          <a class="btn btn-primary" href="#" role="button">Добавить новость</a>
-      </div>
-      {% endif %}
-      </div>
+        <div class="media">
+            {% if user.profile.moderator %}
+                <div>
+                    <h3>Панель администратора</h3>
+                    <a class="btn btn-dark" href="#" role="button">Добавить статью</a>
+                    <a class="btn btn-primary" href="{% url 'register' %}" role="button"><i class='bx bxs-user-plus'></i>Добавить сотрудника</a>
+                    <a class="btn btn-primary" href="#" role="button">Добавить новость</a>
+                </div>
+            {% endif %}
+
+            {% if not user.profile.moderator %}
+                <a class="btn btn-dark" href="#" role="button">Редактировать профиль</a>
+            {% endif %}
+        </div>
     </div>
 {% endblock content %}
