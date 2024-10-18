@@ -1,5 +1,3 @@
-from PIL import Image
-from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -31,7 +29,7 @@ class Profile(models.Model):
         verbose_name_plural = 'Профили'
 
     def __str__(self):
-        return f'Контактное лицо: {self.user.username} | Должность: {self.position}'
+        return f'Контактное лицо: {self.user} | Должность: {self.position}'
 
 
 class Position(models.Model):
@@ -65,16 +63,6 @@ class Department(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):
-        super().save()
-
-        img = Image.open(self.photo.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.photo.path)
-
 
 class Company(models.Model):
     photo = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
@@ -106,15 +94,6 @@ class Company(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):
-        super().save()
-
-        img = Image.open(self.photo.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.photo.path)
 
 
 
